@@ -139,13 +139,8 @@ class PythonTextSender(TextSender):
 
     def send_to_iterm(self, cmd):
         if len(re.findall("\n", cmd)) > 0:
-            if self.bracketed_paste_mode:
-                send_to_iterm(cmd, bracketed=True)
-                send_to_iterm("", bracketed=False)
-            else:
-                send_to_iterm(r"%cpaste -q")
-                send_to_iterm(cmd)
-                send_to_iterm("--")
+            send_to_iterm(cmd, bracketed=False)
+            send_to_iterm("", bracketed=False)
         else:
             send_to_iterm(cmd)
 
