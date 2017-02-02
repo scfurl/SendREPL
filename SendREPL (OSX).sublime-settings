@@ -1,12 +1,4 @@
 {
-    "user" : {
-        "prog": "terminal",
-        "auto_expand_line": true,
-        "auto_advance" : true,
-        "auto_advance_non_empty": false,
-        "bracketed_paste_mode": false,
-    },
-
     // do not override the default settings
     "default" : {
         "prog": "terminal",
@@ -21,7 +13,7 @@
 
         "python" : {
             "prog": "iTerm",
-            "bracketed_paste_mode": true,
+            "bracketed_paste_mode": true
         },
 
         "julia" : {

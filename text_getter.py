@@ -59,7 +59,7 @@ class TextGetter:
 
         if moved:
             view.show(view.sel())
-
+        # sublime.message_dialog("%s" % cmd)
         return cmd
 
 

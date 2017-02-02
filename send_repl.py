@@ -64,7 +64,9 @@ class SendReplCommand(sublime_plugin.TextCommand):
             cmd = getter.get_text()
 
         sender = TextSender.initialize(self.view, prog=prog)
+        #sublime.message_dialog("%s" % sender)
         sender.send_text(cmd)
+
 
 
 class SendReplBuild(sublime_plugin.WindowCommand):

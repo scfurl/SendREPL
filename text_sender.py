@@ -23,6 +23,8 @@ class TextSender:
         else:
             self.prog = self.settings.get("prog")
         self.bracketed_paste_mode = self.settings.get("bracketed_paste_mode")
+        self.ipython = self.settings.get("ipython")
+
 
     @classmethod
     def initialize(cls, view, **kwargs):
@@ -143,6 +145,16 @@ class PythonTextSender(TextSender):
             send_to_iterm("", bracketed=False)
         else:
             send_to_iterm(cmd)
+
+ #    def send_to_iterm(self, cmd):
+ #        ipython = self.settings.get("ipython")
+ #        if len(re.findall("\n", cmd)) > 0:
+ # #           send_to_iterm(cmd, bracketed=False, ipython)
+ #            send_to_iterm(cmd, bracketed=False, ipython)
+ #        else:
+ # #              send_to_iterm(cmd, ipython)
+ #                send_to_iterm(cmd, bracketed=False, ipython)
+
 
     def send_to_conemu(self, cmd):
         conemuc = self.settings.get("conemuc")
