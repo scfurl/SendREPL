@@ -12,7 +12,7 @@
         },
 
         "python" : {
-            "prog": "iTerm",
+            "prog": "terminal",
             "bracketed_paste_mode": true
         },
 

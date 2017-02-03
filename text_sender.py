@@ -126,35 +126,39 @@ class RTextSender(TextSender):
 
 
 class PythonTextSender(TextSender):
-
     def send_to_terminal(self, cmd):
+        ipython = self.settings.get("ipython")
         if len(re.findall("\n", cmd)) > 0:
-            if self.bracketed_paste_mode:
-                send_to_terminal(cmd, bracketed=True)
-                send_to_terminal("", bracketed=False)
+            if ipython == True:
+                if self.bracketed_paste_mode:
+                    send_to_terminal(cmd, bracketed=True)
+                    send_to_terminal("", bracketed=False)
+                else:
+                    send_to_terminal(r"%cpaste -q")
+                    send_to_terminal(cmd)
+                    send_to_terminal("--")
             else:
-                send_to_terminal(r"%cpaste -q")
-                send_to_terminal(cmd)
-                send_to_terminal("--")
+                send_to_terminal(cmd, bracketed=False)
+                send_to_terminal("", bracketed=False)
         else:
-            send_to_terminal(cmd)
+            send_to_terminal(cmd, bracketed=False)
 
     def send_to_iterm(self, cmd):
+        ipython = self.settings.get("ipython")
         if len(re.findall("\n", cmd)) > 0:
-            send_to_iterm(cmd, bracketed=False)
-            send_to_iterm("", bracketed=False)
+            if ipython == True:
+                if self.bracketed_paste_mode:
+                    send_to_iterm(cmd, bracketed=True)
+                    send_to_iterm("", bracketed=False)
+                else:
+                    send_to_iterm(r"%cpaste -q")
+                    send_to_iterm(cmd)
+                    send_to_iterm("--")
+            else:
+                send_to_iterm(cmd, bracketed=False)
+                send_to_iterm("", bracketed=False)
         else:
-            send_to_iterm(cmd)
-
- #    def send_to_iterm(self, cmd):
- #        ipython = self.settings.get("ipython")
- #        if len(re.findall("\n", cmd)) > 0:
- # #           send_to_iterm(cmd, bracketed=False, ipython)
- #            send_to_iterm(cmd, bracketed=False, ipython)
- #        else:
- # #              send_to_iterm(cmd, ipython)
- #                send_to_iterm(cmd, bracketed=False, ipython)
-
+            send_to_iterm(cmd, bracketed=False)
 
     def send_to_conemu(self, cmd):
         conemuc = self.settings.get("conemuc")
